@@ -1,12 +1,7 @@
 import React from "react";
 import { Card, Row, Col, Badge } from "react-bootstrap";
 
-const StatCard = ({
-  title,
-  value,
-  icon: Icon,
-  color = "primary",
-}) => {
+const StatCard = ({ title, value, icon: Icon, color = "primary" }) => {
   return (
     <Card
       className={`shadow-sm border-0 border-start border-5 border-${color} rounded-4 h-100`}
