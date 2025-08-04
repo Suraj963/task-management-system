@@ -1,0 +1,23 @@
+{
+  "moduleURL": "taskManagementSystem",
+  "moduleName": "taskManagementSystem",
+  "db": {
+    "host": "localhost",
+    "user": "root",
+    "password": "",
+    "database": "task-management-system"
+  },
+
+  "gateway": {
+    "rooturl": "/api/v1/"
+  },
+  "security": {
+    "enabled": false,
+    "entities": {
+      "default": "task-management-system"
+    },
+    "defaultGrants": [],
+    "grants": []
+  },
+  "SECRET_KEY" : "MT6PuABZEXAL8sKnYTO9cnZcp3B1I62S"
+}

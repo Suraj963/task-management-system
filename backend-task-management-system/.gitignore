@@ -1,0 +1,9 @@
+// ignore node_modules
+
+/node_modules
+
+/.git
+/coverage
+/.nyc_output
+
+/package-lock.json

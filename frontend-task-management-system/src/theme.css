@@ -1,0 +1,96 @@
+/* src/theme.css */
+
+/* Define color variables for easy management */
+:root {
+  --main-bg-color: #090040;
+  --surface-bg-color: #1a1053; /* A slightly lighter shade for cards, modals etc. */
+  --main-text-color: #FEEBF6;
+  --accent-color: #ff74b9; /* A vibrant pink for primary actions and highlights */
+  --border-color: #3a3078;
+}
+
+body {
+  background-color: var(--main-bg-color) !important;
+  color: var(--main-text-color) !important;
+}
+
+/* --- Component Overrides --- */
+
+/* Navbar */
+.navbar-custom {
+  background-color: var(--surface-bg-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Cards and Modals */
+.card, .modal-content {
+  background-color: var(--surface-bg-color) !important;
+  border: 1px solid var(--border-color) !important;
+  color: var(--main-text-color) !important;
+}
+
+.modal-header, .modal-footer {
+    border-bottom: 1px solid var(--border-color) !important;
+    border-top: 1px solid var(--border-color) !important;
+}
+
+/* Table */
+.table {
+  color: var(--main-text-color) !important;
+}
+
+.table-light, .table-light > th, .table-light > td {
+  background-color: var(--main-bg-color) !important;
+  border-color: var(--border-color) !important;
+}
+
+.table-hover > tbody > tr:hover > * {
+  --bs-table-accent-bg: var(--surface-bg-color) !important;
+}
+
+/* Forms */
+.form-control, .form-select {
+  background-color: var(--main-bg-color);
+  color: var(--main-text-color);
+  border-color: var(--border-color);
+}
+
+.form-control:focus, .form-select:focus {
+  background-color: var(--main-bg-color);
+  color: var(--main-text-color);
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 0.25rem rgba(255, 116, 185, 0.25);
+}
+
+.form-check-input {
+    background-color: var(--surface-bg-color);
+    border-color: var(--border-color);
+}
+.form-check-input:checked {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+  color: var(--main-bg-color);
+}
+.btn-primary:hover {
+    filter: brightness(1.1);
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    color: var(--main-bg-color);
+}
+
+.btn-secondary, .btn-outline-secondary {
+    background-color: var(--surface-bg-color);
+    border-color: var(--border-color);
+}
+
+/* Badge */
+.badge {
+    background-color: var(--border-color) !important;
+    color: var(--main-text-color) !important;
+}
