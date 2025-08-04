@@ -1,13 +1,3 @@
-Of course. Here is the updated README template with the "Live Demo" and "Screenshots" sections removed, and with information about using React Bootstrap included.
-
-The most important part of "how to use" React Bootstrap in a README is telling users how to import its CSS so the styles work correctly.
-
------
-
-### README Template
-
-Copy and paste the text below into your `README.md` file.
-
 ````markdown
 # Task Management System 🚀
 
