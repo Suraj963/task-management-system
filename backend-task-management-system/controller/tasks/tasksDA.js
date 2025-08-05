@@ -9,12 +9,6 @@ exports.update = async (connection, data, taskId) => connection.query(sql.UPDATE
 
 exports.getAllDetails = async (search, status, userId) => mysql.query(sql.GET_ALL_DETAILS(search, status, userId));
 
-exports.checkTaskNameExistsById = async (
-  productId,
-  ProductName,
-  subcategoryId
-) => mysql.query(sql.GET_TASK_BY_Id, [productId, ProductName, subcategoryId]);
-
 exports.getById = async taskId => mysql.query(sql.GET_BY_ID, [taskId]);
 
 exports.deleteById = taskId => mysql.query(sql.DELETE_BY_ID, [taskId]);
