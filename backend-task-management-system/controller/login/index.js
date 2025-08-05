@@ -1,6 +1,5 @@
 const express = require('express');
 
-// const { preAuthorize } = require('../../common/security/preAuthorize');
 const {
   asyncMiddleware: _async
 } = require('../../common/security/asyncMiddleware');

@@ -31,7 +31,6 @@ exports.login = async (req, res) => {
   const error = {};
   try {
     const { body } = req;
-    // await validator.loginValidation(body);
     const result = await service.login(body);
     if (result.success === true) {
       return res.json(httpUtil.getSuccess(result));
