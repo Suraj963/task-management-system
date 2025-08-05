@@ -1,13 +1,15 @@
 const config = require('config');
+const bcrypt = require('bcrypt');
 
 const SECRET_KEY = config.get('SECRET_KEY');
 const jwt = require('jsonwebtoken');
-const { decryptPassword, encryptPassword } = require('../../utils/encryption');
 const loginDA = require('./loginDA');
 const { generateUUIDV4 } = require('../../utils/uuidGenerator');
 
 
 const ACCESS_TOKEN_EXPIRATION = '1d';
+const SALT_ROUNDS = 12;
+
 
 exports.signup = async (connection, data) => {
   const {
@@ -16,7 +18,7 @@ exports.signup = async (connection, data) => {
 
   const [checkUserExists] = await loginDA.getUserDetails(mobile);
 
-  const encryptedPassword = encryptPassword(password);
+  const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
 
   if (!checkUserExists) {
     const userData = {
@@ -24,7 +26,7 @@ exports.signup = async (connection, data) => {
       name,
       mobile,
       email,
-      password: encryptedPassword.encryptedData
+      password: hashedPassword
     };
 
     const result = await loginDA.signup(connection, userData);
@@ -35,24 +37,28 @@ exports.signup = async (connection, data) => {
 
 exports.login = async data => {
   const { mobile, password: reqPassword } = data;
-  const decodedPassword = Buffer.from(reqPassword, 'base64').toString('utf8');
+
   const [userDetails] = await loginDA.getUserDetails(mobile);
   if (!userDetails) {
     throw new Error('User not registered');
   }
-  const { password, id } = userDetails;
 
-  const decryptedPassword = decryptPassword(password);
+  const isMatch = await bcrypt.compare(
+    reqPassword,
+    userDetails.password
+  );
 
-  if (decryptedPassword === decodedPassword) {
-    const token = jwt.sign({ id }, SECRET_KEY, { expiresIn: ACCESS_TOKEN_EXPIRATION });
-    return { success: true, token };
-  }
-  if (decryptedPassword !== decodedPassword) {
-    return false;
+  if (!isMatch) {
+    throw new Error('Invalid credentials');
   }
 
-  throw new Error('Error in Login');
+  const token = jwt.sign(
+    { id: userDetails.id },
+    SECRET_KEY,
+    { expiresIn: ACCESS_TOKEN_EXPIRATION }
+  );
+
+  return { success: true, token };
 };
 
 exports.getProfile = async id => {

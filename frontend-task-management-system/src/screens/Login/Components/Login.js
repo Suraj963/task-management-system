@@ -47,10 +47,9 @@ const Login = () => {
       const newError = validateLoginSubmitFields(formData);
       setErrors(newError);
       if (Object.keys(newError).length === 0) {
-        const encryptedPassword = Base64.encode(formData.password);
         const req = {
           mobile: formData.mobile.trim(),
-          password: encryptedPassword,
+          password: formData.password,
         };
         handleLogin(req);
       }
