@@ -4,7 +4,7 @@ import { CheckCircleFill } from "react-bootstrap-icons";
 
 const SuccessSnackbar = ({ show, onClose, message }) => {
   return (
-    <ToastContainer position="top-end" className="p-3" style={{ zIndex: 9999 }}>
+    <ToastContainer position="bottom-end" className="p-3" style={{ zIndex: 9999 }}>
       <Toast onClose={onClose} show={show} delay={3000} autohide bg="success">
         <Toast.Header closeButton={false}>
           <CheckCircleFill className="me-2" />
